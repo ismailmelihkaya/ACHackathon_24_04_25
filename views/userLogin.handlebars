@@ -1,7 +1,99 @@
-<h2>Kullanıcı Girişi</h2>
-<form action="/auth/user-login" method="POST">
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Şifre" required>
-    <button type="submit">Giriş Yap</button>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+.form-heading {
+    font-size: 24px;
+    color: #4CAF50;
+    margin-bottom: 30px;
+}
+
+.login-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background-color: #3e8e41;
+}
+
+.back-link {
+    text-decoration: none;
+    display: block;
+    margin-top: 15px;
+}
+
+.back-btn {
+    background-color: #ddd;
+    color: #333;
+    padding: 10px 20px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #bbb;
+}
+
+</style>
+
+<h2 class="form-heading">Kullanıcı Girişi</h2>
+<form action="/auth/user-login" method="POST" class="login-form">
+    <input type="email" name="email" placeholder="Email" required class="input-field">
+    <input type="password" name="password" placeholder="Şifre" required class="input-field">
+    <button type="submit" class="btn">Giriş Yap</button>
 </form>
-<a href="/"><button>Geri dön</button></a>
+<a href="/" class="back-link">
+    <button class="btn back-btn">Geri dön</button>
+</a>
