@@ -1,5 +1,60 @@
-<a href="/register/doctor"><button>Doktor Kayıt</button></a>
-<a href="/login/doctor"><button>Doktor Girişi</button></a>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
-<a href="/register/user"><button>Hasta Kayıt</button></a>
-<a href="/login/user"><button>Hasta Girişi</button></a>
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    background-color: #4CAF50; /* Yeşil renk */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 200px;
+    margin: 5px auto;
+}
+
+.btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05); /* Hoverda büyüme efekti */
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:active {
+    background-color: #3e8e41;
+}
+
+</style>
+
+<div class="button-container">
+    <a href="/register/doctor">
+        <button class="btn">Doktor Kayıt</button>
+    </a>
+    <a href="/login/doctor">
+        <button class="btn">Doktor Girişi</button>
+    </a>
+    <a href="/register/user">
+        <button class="btn">Hasta Kayıt</button>
+    </a>
+    <a href="/login/user">
+        <button class="btn">Hasta Girişi</button>
+    </a>
+</div>
