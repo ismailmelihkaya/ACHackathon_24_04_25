@@ -1,10 +1,95 @@
-<h2>Merhaba {{userName}}. Geçmiş Randevuların aşağıda yer alıyor.</h2>
-<a href="/auth/logout"><button>Çıkış Yap</button></a>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
 
-<input type="text" style="width: 10%" id="filterInput" placeholder="Doktor adı veya tarih girin..." onkeyup="filterPastAppointments()" />
+.page-heading {
+  font-size: 28px;
+  color: #4CAF50;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.filter-input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.filter-input:focus {
+  border-color: #4CAF50;
+}
+
+.appointments-table {
+  width: 80%;
+  margin: 30px auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.appointments-table th, .appointments-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.appointments-table th {
+  background-color: #f8f8f8;
+  color: #4CAF50;
+}
+
+.appointments-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+button.btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+</style>
+
+<h2 class="page-heading">Merhaba, {{userName}}. Geçmiş Randevuların aşağıda yer alıyor.</h2>
+<a href="/auth/logout"><button class="btn btn-danger">Çıkış Yap</button></a>
+
+<div class="filter-container">
+  <input type="text" style="width: 20%" id="filterInput" placeholder="Doktor adı veya tarih girin..." onkeyup="filterPastAppointments()" class="filter-input" />
+</div>
 
 {{#if appointments.length}}
-  <table id="pastAppointmentsTable" border="1">
+  <table id="pastAppointmentsTable" class="appointments-table">
     <thead>
       <tr>
         <th>Doktor</th>
@@ -45,4 +130,3 @@
     });
   }
 </script>
-

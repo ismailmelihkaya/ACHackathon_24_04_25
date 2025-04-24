@@ -1,24 +1,115 @@
-<h2>Randevu Oluştur</h2>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
 
-<form action="/auth/user/appointment/create/{{userId}}" method="POST">
+.page-heading {
+  font-size: 28px;
+  color: #4CAF50;
+  text-align: center;
+  margin-top: 30px;
+}
 
-  <div>
+.appointment-form {
+  background-color: white;
+  width: 60%;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 16px;
+  color: #333;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-top: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #4CAF50;
+}
+
+textarea.form-control {
+  height: 120px;
+}
+
+button.btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #45a049;
+}
+
+.btn-secondary {
+  background-color: #ddd;
+  color: #333;
+  margin-top: 10px;
+  text-align: center;
+  padding: 12px 20px;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #bbb;
+}
+
+</style>
+
+<h2 class="page-heading">Randevu Oluştur</h2>
+
+<form action="/auth/user/appointment/create/{{userId}}" method="POST" class="appointment-form">
+  <div class="form-group">
     <label for="datetime">Tarih ve Saat:</label>
-    <input type="datetime-local" name="datetime" required min="{{minDatetime}}" max="{{maxDatetime}}" />
+    <input type="datetime-local" name="datetime" required min="{{minDatetime}}" max="{{maxDatetime}}" class="form-control" />
   </div>
 
-  <div>
+  <div class="form-group">
     <label for="doctor">Doktor Seçin:</label>
-    <select name="doctor_id" required>
+    <select name="doctor_id" required class="form-control">
       {{#each doctors}}
         <option value="{{id}}">{{name}}</option>
       {{/each}}
     </select>
   </div>
 
-  <div>
+  <div class="form-group">
     <label for="notes">Notlar:</label>
-    <textarea name="notes"></textarea>
+    <textarea name="notes" class="form-control"></textarea>
   </div>
 
   <button type="submit" class="btn btn-success">Randevu Oluştur</button>

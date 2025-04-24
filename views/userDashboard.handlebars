@@ -1,16 +1,142 @@
-<h2>Merhaba {{userName}}. Randevuların aşağıda yer alıyor.</h2>
-<div>
-  <a href="/auth/user/appointment/create/{{userId}}" class="btn btn-primary"><button>Randevu Oluştur</button></a>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.page-heading {
+  font-size: 28px;
+  color: #4CAF50;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.action-buttons {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.action-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+  background-color: #45a049;
+}
+
+.filter-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter-input {
+  width: 250px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.filter-input:focus {
+  border-color: #4CAF50;
+}
+
+.appointments-table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.appointments-table th,
+.appointments-table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.appointments-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.appointments-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.appointments-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.no-appointments {
+  text-align: center;
+  font-size: 18px;
+  color: #999;
+}
+
+.logout-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logout-btn {
+  background-color: #ddd;
+  color: #333;
+  padding: 10px 20px;
+  width: 200px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #bbb;
+}
+
+</style>
+
+<h2 class="page-heading">Merhaba {{userName}}, Randevuların aşağıda yer alıyor.</h2>
+
+<div class="action-buttons">
+  <a href="/auth/user/appointment/create/{{userId}}" class="btn btn-primary">
+    <button class="action-btn">Randevu Oluştur</button>
+  </a>
 </div>
+
 <br>
-<div>
-  <a href="/auth/user/old_appointments/{{userId}}" class="btn btn-primary"><button>Geçmiş Randevular</button></a>
+
+<div class="action-buttons">
+  <a href="/auth/user/old_appointments/{{userId}}" class="btn btn-primary">
+    <button class="action-btn">Geçmiş Randevular</button>
+  </a>
 </div>
+
 <br>
-<input type="text" style="width: 10%" id="filterInput" placeholder="Doktor adı veya tarih girin..." onkeyup="filterAppointments()" />
+
+<div class="filter-container">
+  <input type="text" id="filterInput" class="filter-input" placeholder="Doktor adı veya tarih girin..." onkeyup="filterAppointments()" />
+</div>
 
 {{#if appointments.length}}
-  <table id="appointmentsTable" border="1">
+  <table class="appointments-table">
     <thead>
       <tr>
         <th>Doktor</th>
@@ -31,13 +157,17 @@
     </tbody>
   </table>
 {{else}}
-  <p>Henüz bir randevunuz bulunmamaktadır.</p>
+  <p class="no-appointments">Henüz bir randevunuz bulunmamaktadır.</p>
 {{/if}}
+
+<a href="/auth/logout" class="logout-link">
+  <button class="btn logout-btn">Çıkış Yap</button>
+</a>
 
 <script>
   function filterAppointments() {
     const input = document.getElementById("filterInput").value.toLowerCase();
-    const rows = document.querySelectorAll("#appointmentsTable tbody tr");
+    const rows = document.querySelectorAll(".appointments-table tbody tr");
 
     rows.forEach(row => {
       const doctor = row.cells[0].textContent.toLowerCase();
@@ -51,5 +181,3 @@
     });
   }
 </script>
-
-<a href="/auth/logout"><button>Çıkış Yap</button></a>
