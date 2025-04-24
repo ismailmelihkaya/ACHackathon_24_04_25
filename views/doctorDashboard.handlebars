@@ -1,43 +1,159 @@
-<h2>Merhaba, {{doctorName}}.Hastalarınızın Randevuları</h2>
-<input type="text" style="width: 14%" id="filterInput" placeholder="Hasta adı veya tarih girin..." onkeyup="filterDoctorAppointments()" />
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.page-heading {
+    font-size: 28px;
+    color: #4CAF50;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.filter-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filter-input {
+    width: 250px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.filter-input:focus {
+    border-color: #4CAF50;
+}
+
+.appointments-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.appointments-table th,
+.appointments-table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.appointments-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.appointments-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.appointments-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.approve-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.approve-btn:hover {
+    background-color: #45a049;
+}
+
+.no-appointments {
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+}
+
+.logout-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logout-btn {
+    background-color: #ddd;
+    color: #333;
+    padding: 10px 20px;
+    width: 200px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #bbb;
+}
+
+</style>
+
+<h2 class="page-heading">Merhaba, {{doctorName}}. Hastalarınızın Randevuları</h2>
+
+<div class="filter-container">
+  <input type="text" id="filterInput" placeholder="Hasta adı veya tarih girin..." onkeyup="filterDoctorAppointments()" class="filter-input" />
+</div>
 
 {{#if appointments.length}}
-    <table id="doctorAppointmentsTable" border="1">
-        <thead>
-            <tr>
-                <th>Hasta</th>
-                <th>Tarih</th>
-                <th>Durum</th>
-                <th>Not</th>
-                <th>Onayla</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each appointments}}
-                <tr>
-                    <td>{{user_name}}</td>
-                    <td>{{datetime}}</td>
-                    <td>{{status}}</td>
-                    <td>{{notes}}</td>
-                    <td>
-                        {{#eq status "pending"}} 
-                            <form action="/auth/doctor/appointment/approve/{{id}}" method="POST">
-                                <button type="submit">Onayla</button>
-                            </form>
-                        {{/eq}}
-                    </td>
-                </tr>
-            {{/each}}
-        </tbody>
-    </table>
+  <table class="appointments-table">
+    <thead>
+      <tr>
+        <th>Hasta</th>
+        <th>Tarih</th>
+        <th>Durum</th>
+        <th>Not</th>
+        <th>Onayla</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each appointments}}
+        <tr>
+          <td>{{user_name}}</td>
+          <td>{{datetime}}</td>
+          <td>{{status}}</td>
+          <td>{{notes}}</td>
+          <td>
+            {{#eq status "pending"}}
+              <form action="/auth/doctor/appointment/approve/{{id}}" method="POST" class="approve-form">
+                <button type="submit" class="btn approve-btn">Onayla</button>
+              </form>
+            {{/eq}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 {{else}}
-    <p>Henüz bir randevu yok.</p>
+  <p class="no-appointments">Henüz bir randevu yok.</p>
 {{/if}}
+
+<a href="/auth/logout" class="logout-link">
+  <button class="btn logout-btn">Çıkış Yap</button>
+</a>
 
 <script>
   function filterDoctorAppointments() {
     const input = document.getElementById("filterInput").value.toLowerCase();
-    const rows = document.querySelectorAll("#doctorAppointmentsTable tbody tr");
+    const rows = document.querySelectorAll(".appointments-table tbody tr");
 
     rows.forEach(row => {
       const patient = row.cells[0].textContent.toLowerCase();
@@ -51,5 +167,3 @@
     });
   }
 </script>
-
-<a href="/auth/logout"><button>Çıkış Yap</button></a>
