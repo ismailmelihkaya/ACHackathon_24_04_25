@@ -7,8 +7,10 @@
   <a href="/auth/user/old_appointments/{{userId}}" class="btn btn-primary"><button>Geçmiş Randevular</button></a>
 </div>
 <br>
+<input type="text" style="width: 10%" id="filterInput" placeholder="Doktor adı veya tarih girin..." onkeyup="filterAppointments()" />
+
 {{#if appointments.length}}
-  <table border="1">
+  <table id="appointmentsTable" border="1">
     <thead>
       <tr>
         <th>Doktor</th>
@@ -31,4 +33,23 @@
 {{else}}
   <p>Henüz bir randevunuz bulunmamaktadır.</p>
 {{/if}}
+
+<script>
+  function filterAppointments() {
+    const input = document.getElementById("filterInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#appointmentsTable tbody tr");
+
+    rows.forEach(row => {
+      const doctor = row.cells[0].textContent.toLowerCase();
+      const date = row.cells[1].textContent.toLowerCase();
+
+      if (doctor.includes(input) || date.includes(input)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+</script>
+
 <a href="/auth/logout"><button>Çıkış Yap</button></a>

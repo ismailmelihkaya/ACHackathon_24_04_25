@@ -1,6 +1,8 @@
 <h2>Merhaba, {{doctorName}}.Hastalarınızın Randevuları</h2>
+<input type="text" style="width: 14%" id="filterInput" placeholder="Hasta adı veya tarih girin..." onkeyup="filterDoctorAppointments()" />
+
 {{#if appointments.length}}
-    <table border="1">
+    <table id="doctorAppointmentsTable" border="1">
         <thead>
             <tr>
                 <th>Hasta</th>
@@ -19,7 +21,6 @@
                     <td>{{notes}}</td>
                     <td>
                         {{#eq status "pending"}} 
-                            <!-- Sadece "pending" olan randevular için onay butonu göster -->
                             <form action="/auth/doctor/appointment/approve/{{id}}" method="POST">
                                 <button type="submit">Onayla</button>
                             </form>
@@ -32,4 +33,23 @@
 {{else}}
     <p>Henüz bir randevu yok.</p>
 {{/if}}
+
+<script>
+  function filterDoctorAppointments() {
+    const input = document.getElementById("filterInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#doctorAppointmentsTable tbody tr");
+
+    rows.forEach(row => {
+      const patient = row.cells[0].textContent.toLowerCase();
+      const date = row.cells[1].textContent.toLowerCase();
+
+      if (patient.includes(input) || date.includes(input)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+</script>
+
 <a href="/auth/logout"><button>Çıkış Yap</button></a>
