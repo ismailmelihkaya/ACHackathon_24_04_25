@@ -317,13 +317,13 @@ router.post("/user/appointment/create/:id", async (req, res) => {
               VALUES (@datetime, @doctor_id, @user_id, @notes, 'pending')
             `);
 
-    const referer = req.get("Referrer") || "/"; // Eğer referer yoksa, ana sayfaya yönlendir
-    res.redirect(referer);
+    res.send("Randevunuz başarıyla oluşturuldu.");
   } catch (err) {
     console.error("Randevu oluşturulurken hata:", err);
     res.status(500).send("Bir hata oluştu");
   }
 });
+
 
 // Doktor randevu onaylama
 router.post("/doctor/appointment/approve/:id", async (req, res) => {
