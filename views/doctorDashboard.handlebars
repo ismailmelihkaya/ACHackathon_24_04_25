@@ -1,0 +1,35 @@
+<h2>Merhaba, {{doctorName}}.Hastalarınızın Randevuları</h2>
+{{#if appointments.length}}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Hasta</th>
+                <th>Tarih</th>
+                <th>Durum</th>
+                <th>Not</th>
+                <th>Onayla</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each appointments}}
+                <tr>
+                    <td>{{user_name}}</td>
+                    <td>{{datetime}}</td>
+                    <td>{{status}}</td>
+                    <td>{{notes}}</td>
+                    <td>
+                        {{#eq status "pending"}} 
+                            <!-- Sadece "pending" olan randevular için onay butonu göster -->
+                            <form action="/auth/doctor/appointment/approve/{{id}}" method="POST">
+                                <button type="submit">Onayla</button>
+                            </form>
+                        {{/eq}}
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>Henüz bir randevu yok.</p>
+{{/if}}
+<a href="/auth/logout"><button>Çıkış Yap</button></a>

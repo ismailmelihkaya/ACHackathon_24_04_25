@@ -1,0 +1,27 @@
+<h2>Randevu Oluştur</h2>
+
+<form action="/auth/user/appointment/create/{{userId}}" method="POST">
+
+  <div>
+    <label for="datetime">Tarih ve Saat:</label>
+    <input type="datetime-local" name="datetime" required min="{{minDatetime}}" max="{{maxDatetime}}" />
+  </div>
+
+  <div>
+    <label for="doctor">Doktor Seçin:</label>
+    <select name="doctor_id" required>
+      {{#each doctors}}
+        <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div>
+    <label for="notes">Notlar:</label>
+    <textarea name="notes"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-success">Randevu Oluştur</button>
+</form>
+
+<a href="/auth/user/dashboard?id={{userId}}" class="btn btn-secondary">Geri Dön</a>

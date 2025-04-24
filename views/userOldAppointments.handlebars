@@ -1,0 +1,27 @@
+<h2>Merhaba {{userName}}. Geçmiş Randevuların aşağıda yer alıyor.</h2>
+<a href="/auth/logout"><button>Çıkış Yap</button></a>
+
+{{#if appointments.length}}
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Doktor</th>
+        <th>Tarih</th>
+        <th>Durum</th>
+        <th>Not</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each appointments}}
+        <tr>
+          <td>{{doctor_name}}</td>
+          <td>{{datetime}}</td>
+          <td>{{status}}</td>
+          <td>{{notes}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>Henüz geçmiş randevunuz bulunmamaktadır.</p>
+{{/if}}

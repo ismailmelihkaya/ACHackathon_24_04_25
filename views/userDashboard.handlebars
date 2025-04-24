@@ -1,0 +1,34 @@
+<h2>Merhaba {{userName}}. Randevuların aşağıda yer alıyor.</h2>
+<div>
+  <a href="/auth/user/appointment/create/{{userId}}" class="btn btn-primary"><button>Randevu Oluştur</button></a>
+</div>
+<br>
+<div>
+  <a href="/auth/user/old_appointments/{{userId}}" class="btn btn-primary"><button>Geçmiş Randevular</button></a>
+</div>
+<br>
+{{#if appointments.length}}
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Doktor</th>
+        <th>Tarih</th>
+        <th>Durum</th>
+        <th>Not</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each appointments}}
+        <tr>
+          <td>{{doctor_name}}</td>
+          <td>{{datetime}}</td>
+          <td>{{status}}</td>
+          <td>{{notes}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>Henüz bir randevunuz bulunmamaktadır.</p>
+{{/if}}
+<a href="/auth/logout"><button>Çıkış Yap</button></a>
