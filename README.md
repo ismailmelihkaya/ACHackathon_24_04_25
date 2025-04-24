@@ -32,7 +32,27 @@ Bu proje, [ACHackathon\_24\_04\_25](https://github.com/ismailmelihkaya/ACHackath
 📁 Proje Yapısı
 ---------------
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pgsqlKopyalaDüzenleACHackathon_24_04_25/  ├── app.js  ├── db.js  ├── routes/  │   ├── index.js  │   └── users.js  ├── views/  │   ├── layouts/  │   │   └── main.hbs  │   ├── partials/  │   │   ├── header.hbs  │   │   └── footer.hbs  │   └── home.hbs  ├── public/  │   ├── css/  │   └── js/  ├── .env  ├── package.json  └── README.md   `
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pgsqlKopyalaDüzenle
+
+ACHackathon_24_04_25/  
+├── app.js  
+├── db.js  
+├── routes/  
+│   ├── index.js  
+│   └── users.js  
+├── views/  
+│   ├── layouts/  
+│   │   └── main.hbs  
+│   ├── partials/  
+│   │   ├── header.hbs  
+│   │   └── footer.hbs  
+│   └── home.hbs  
+├── public/  
+│   ├── css/  
+│   └── js/  
+├── .env  
+├── package.json  
+└── README.md   `
 
 *   **app.js**: Uygulamanın ana dosyası, Express sunucusunun yapılandırıldığı yer.
     
